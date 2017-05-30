@@ -1,5 +1,8 @@
 const Discord = require('discord.js')
 const config = require('./config.js')
+const Weather = require('./commands/weather')
+const Forecast = require('./commands/forecast')
+const Ping = require('./commands/ping')
 const client = new Discord.Client()
 
 client.on('ready', () => {
@@ -13,9 +16,13 @@ client.on('message', msg => {
 
   // If message is hello, post hello too
   if (msg.content === 'hello') {
-    msg.channel.sendMessage("It's me... ")
-    msg.channel.sendMessage("I was wondering if after all these years you d'like to see me...")
+    msg.channel.send("It's me... ")
+    msg.channel.send("I was wondering if after all these years you d'like to see me...")
   }
+
+  Weather.parse(msg) ||
+  Forecast.parse(msg) ||
+  Ping.parse(msg)
 })
 
 client.login(config.token)
