@@ -7,7 +7,7 @@ const convertKelvinToCelsius = tempInKelvin => tempInKelvin - 273.15
 
 const getCityDetailsByName = name => cityList.find(city => city.name.toLowerCase() === name.toLowerCase())
 
-const pad = s => { return (s < 10) ? '0' + s : s }
+const pad = s => (s < 10) ? '0' + s : s
 
 const convertDate = date => {
   let d = new Date(date)
