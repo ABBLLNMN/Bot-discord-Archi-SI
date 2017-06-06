@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const config = require('./config.js')
+const Twitter = require('./commands/twitter')
 const Weather = require('./commands/weather')
 const Forecast = require('./commands/forecast')
 const Ping = require('./commands/ping')
@@ -22,7 +23,8 @@ client.on('message', msg => {
 
   Weather.parse(msg) ||
   Forecast.parse(msg) ||
-  Ping.parse(msg)
+  Ping.parse(msg) ||
+  Twitter.parse(msg)
 })
 
 client.login(config.token)
