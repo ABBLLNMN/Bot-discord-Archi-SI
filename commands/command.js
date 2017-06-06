@@ -4,6 +4,9 @@ module.exports = class Command {
       let msgContent = message.content.trim() // efface les espaces inutiles
       let msgSplit = msgContent.split(' ')
       msgSplit.shift() // supprime le 1er element du tableau
+      while (msgSplit[0] === '') {
+        msgSplit.shift()
+      }
       message.content = msgSplit.join(' ')
       this.action(message)
       return true
