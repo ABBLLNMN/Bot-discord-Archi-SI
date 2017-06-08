@@ -1,8 +1,14 @@
 module.exports = {
-  token: 'MzEzNjQ2MDQ5MzM0MDAxNjY0.C_tJhg.1XLYYRNQgvHNns1ygWeJU8f_JiQ',
-  channel: '306028002796371969',
+  token: '',
+  channel: '',
   weather: {
-    API_KEY: '51c3d12667251b88a09cbdeb2ec49ef5',
-    lang: 'fr'
+    API_KEY: '',
+    lang: ''
+  },
+  twitter: {
+    CONSUMER_KEY: '',
+    CONSUMER_SECRET: '',
+    ACCESS_TOKEN_KEY: '',
+    ACCESS_TOKEN_SECRET: ''
   }
 }
