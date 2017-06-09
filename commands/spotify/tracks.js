@@ -20,13 +20,12 @@ spotifyApi.clientCredentialsGrant()
 
 module.exports = class SpotifTrack extends Command {
   static match (message) {
-    console.log('checking spotifyTRACKS')
     return message.content.startsWith('!spotifySong')
   }
 
   static action (message) {
     spotifyApi.searchTracks('Track:' + message.content).then(function (data) {
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < data.body.tracks.items.length && i < 3; i++) {
         if (data.body.tracks.items.length === 0) {
           message.reply("Il n'y a pas de résultat pour votre recherche.")
           break
