@@ -9,6 +9,10 @@ const config = require('./config.js')
 const Twitter = require('./commands/twitter')
 const Weather = require('./commands/weather')
 const Forecast = require('./commands/forecast')
+const Artist = require('./commands/spotify/artist')
+const Album = require('./commands/spotify/album')
+const SpotifyAll = require('./commands/spotify/all')
+const Tracks = require('./commands/spotify/tracks')
 const Ping = require('./commands/ping')
 const client = new Discord.Client()
 let channel
@@ -33,7 +37,11 @@ client.on('message', msg => {
   Weather.parse(msg) ||
   Forecast.parse(msg) ||
   Ping.parse(msg) ||
-  Twitter.parse(msg)
+  Twitter.parse(msg) ||
+  Artist.parse(msg) ||
+  Album.parse(msg) ||
+  SpotifyAll.parse(msg) ||
+  Tracks.parse(msg)
 })
 
 client.login(config.token)
