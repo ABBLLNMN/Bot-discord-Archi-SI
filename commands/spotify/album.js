@@ -24,13 +24,12 @@ module.exports = class SpotifyAlbum extends Command {
   }
 
   static action (message) {
-    spotifyApi.searchTracks('Album:' + message.content).then(function (data) {
-      for (let i = 0; i < data.body.tracks.items.length && i < 3; i++) {
-        if (data.body.tracks.items.length === 0) {
-          message.reply("Il n'y a pas de résultat pour votre recherche.")
-          break
-        } else {
-          message.reply('Album numéro : ' + [i + 1] + data.body.tracks.items[i].name)
+    spotifyApi.searchTracks('album:' + message.content).then(function (data) {
+      if (data.body.tracks.items[0] === undefined) {
+        message.reply("Votre recherche n'a pas aboutie, veuillez rééssayer.")
+      } else {
+        for (let i = 0; i < data.body.tracks.items.length && i < 3; i++) {
+          message.reply('Album numéro ' + [i + 1] + ' : ' + data.body.tracks.items[i].name)
         }
       }
     }, function (err) {

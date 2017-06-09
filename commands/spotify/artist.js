@@ -25,11 +25,11 @@ module.exports = class SpotifyArtist extends Command {
 
   static action (message) {
     spotifyApi.searchArtists(message.content).then(function (data) {
-      for (let i = 0; i < data.body.tracks.items.length && i < 3; i++) {
-        if (data.body.artists.items.length === 0) {
-          message.reply("Il n'y a pas de résultat pour votre recherche.")
-          break
-        } else {
+      console.log(data.body.artists.items[0])
+      if (data.body.artists.items[0] === undefined) {
+        message.reply("Votre recherche n'a pas aboutie, veuillez rééssayer.")
+      } else {
+        for (let i = 0; i < data.body.artists.items.length && i < 3; i++) {
           message.reply('Artiste numéro ' + [i + 1] + ' : ' + data.body.artists.items[i].name)
         }
       }
