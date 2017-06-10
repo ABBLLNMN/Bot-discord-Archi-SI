@@ -1,5 +1,4 @@
 const Command = require('../command')
-// const config = require('../config')
 const SpotifyWebApi = require('spotify-web-api-node')
 
 var spotifyApi = new SpotifyWebApi({
@@ -12,7 +11,6 @@ spotifyApi.clientCredentialsGrant()
     console.log('The access token expires in ' + data.body['expires_in'])
     console.log('The access token is ' + data.body['access_token'])
 
-    // Save the access token so that it's used in future calls
     spotifyApi.setAccessToken(data.body['access_token'])
   }, function (err) {
     console.log('Something went wrong when retrieving an access token', err.message)
@@ -25,7 +23,6 @@ module.exports = class SpotifyAll extends Command {
 
   static action (message) {
     spotifyApi.searchTracks(message.content).then(function (data) {
-      console.log(data.body.tracks.items[0])
       if (data.body.tracks.items[0] === undefined) {
         message.reply("Votre recherche n'a pas aboutie, veuillez rééssayer.")
       } else {
