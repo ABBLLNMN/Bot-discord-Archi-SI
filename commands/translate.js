@@ -26,7 +26,7 @@ module.exports = class Translate extends Command {
       let translations = results[0]
       translations = Array.isArray(translations) ? translations : [translations]
       translations.forEach((translation) => {
-        message.reply('Traduction : ' + (message.content + ' -> ' + translation)
+        message.reply('Traduction : ' + (message.content + ' -> ' + translation))
       })
     })
     .catch((err) => {
