@@ -33,6 +33,4 @@ module.exports = class Translate extends Command {
       console.log('ERROR', err)
     })
   }
-
-
 }
