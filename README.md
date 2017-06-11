@@ -14,6 +14,6 @@ Spotify : </br>
     - !spotifyAlbum : recherche un album (!spotifyAlbum best-of) </br>
     
 Google traduction : </br>
-    - translate 'langue de retour' 'Votre message' </br>
-    - exemple : translate en Cela fonctionne-t-il ? </br>
+    - pour traduire : !translate 'langue de retour' 'votre message' </br>
+    - exemple : !translate en Cela fonctionne-t-il ? </br>
     - réponse : Does it work? </br>

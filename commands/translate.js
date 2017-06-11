@@ -5,13 +5,13 @@ const Trad = require('@google-cloud/translate')({
 
 module.exports = class Translate extends Command {
   static match (message) {
-    return message.content.startsWith('translate')
+    return message.content.startsWith('!translate')
   }
 
   static action (message) {
     // detection de la langue
     if (message.content.charAt(2) !== ' ' || message.content.charAt(1) === ' ') {
-      message.reply('Veuillez entrer une langue valide.')
+      message.channel.send('Veuillez entrer une langue valide.')
     } else {
       const translate = Trad
       var retour = message.content.substring(0)
@@ -20,7 +20,7 @@ module.exports = class Translate extends Command {
         let detections = results[0]
         detections = Array.isArray(detections) ? detections : [detections]
         detections.forEach((detection) => {
-          message.reply('Langue de départ : ' + detection.language)
+          message.channel.send('Langue de départ : ' + detection.language)
         })
       })
       .catch((err) => {
@@ -33,11 +33,11 @@ module.exports = class Translate extends Command {
         let translations = results[0]
         translations = Array.isArray(translations) ? translations : [translations]
         translations.forEach((translation) => {
-          message.reply('La traduction : ' + translation)
+          message.channel.send('La traduction : ' + translation)
         })
       })
     .catch((err) => {
-      message.reply('ERROR', err)
+      message.channel.send('ERROR', err)
     })
     }
   }
