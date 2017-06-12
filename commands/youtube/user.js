@@ -32,6 +32,9 @@ module.exports = class Youtube extends Command {
         console.log(tab)
         var numero
         numero = 0
+        if (compteur === 0) {
+          message.reply("Votre recherche n'a pas abouti, veuillez rééssayer.")
+        }
         if (compteur === 1) {
           for (k = 0; k < 1; k++) {
             if (result.items[tab[k]].id.kind === 'youtube#channel') {
