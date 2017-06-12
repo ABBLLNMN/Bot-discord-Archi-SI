@@ -22,7 +22,7 @@ const sendTweet = txtTweet => {
   })
 }
 
-clientTwitter.stream('statuses/filter', { track: 'ablm_isep' }, function (stream) {
+clientTwitter.stream('statuses/filter', { track: 'I_am_the_BOT' }, function (stream) {
   stream.on('data', function (tweet) {
     console.log(tweet)
     let link = 'https://twitter.com/' + tweet.user.screen_name + '/status/' + tweet.id_str
@@ -41,7 +41,6 @@ module.exports = class Twitter extends Command {
   }
 
   static action (message) {
-    console.log(message.content.length)
     if (message.content.length > 140 || message.content.length < 1) {
       message.channel.send('Envoi impossible : le tweet fait ' + message.content.length + ' caractères (max : 140)')
     } else {
