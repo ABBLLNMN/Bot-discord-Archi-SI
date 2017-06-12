@@ -1,5 +1,5 @@
 module.exports = {
-  token: 'MzEzNjQ1OTcxNzA1OTU0MzE0.DAR4Ug.Z9cQH7Ghx3SiW7hp2_6nIhMgVOs',
+  token: 'MzEzNjQ2MDQ5MzM0MDAxNjY0.C_tJhg.1XLYYRNQgvHNns1ygWeJU8f_JiQ',
   channel: '306028002796371969',
   weather: {
     API_KEY: '',
@@ -10,5 +10,8 @@ module.exports = {
     CONSUMER_SECRET: '',
     ACCESS_TOKEN_KEY: '',
     ACCESS_TOKEN_SECRET: ''
+  },
+  translate: {
+    KEY: 'AIzaSyCO0UTJvR2C3n6IiCioCiPJWJAuOEak18c'
   }
 }

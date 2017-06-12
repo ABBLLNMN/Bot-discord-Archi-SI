@@ -1,6 +1,13 @@
 const Command = require('./command')
-const Trad = require('@google-cloud/translate')({
-  key: 'AIzaSyCO0UTJvR2C3n6IiCioCiPJWJAuOEak18c'
+const config = require('../config')
+const translate = require('@google-cloud/translate')({
+  key: config.translate.KEY
+})
+
+let content, languedemandee, atraduire
+let languageList
+translate.getLanguages().then((data) => {
+  languageList = data[0]
 })
 
 module.exports = class Translate extends Command {
@@ -9,13 +16,18 @@ module.exports = class Translate extends Command {
   }
 
   static action (message) {
-    // detection de la langue
-    if (message.content.charAt(2) !== ' ' || message.content.charAt(1) === ' ') {
-      message.channel.send('Veuillez entrer une langue valide.')
-    } else {
-      const translate = Trad
-      var retour = message.content.substring(0)
-      translate.detect(retour)
+    content = message.content.split(' ')
+    if (content.length > 1) {
+      languedemandee = content[0].toLowerCase()
+      console.log(languageList.find((langue) => langue.code === languedemandee))
+
+      // detection de la langue
+      if (languageList.find((langue) => langue.code === languedemandee) === undefined) {
+        message.channel.send('Veuillez entrer une langue valide.')
+      } else {
+        content.shift()
+        atraduire = content.join(' ')
+        translate.detect(atraduire)
       .then((results) => {
         let detections = results[0]
         detections = Array.isArray(detections) ? detections : [detections]
@@ -26,19 +38,21 @@ module.exports = class Translate extends Command {
       .catch((err) => {
         console.log('ERROR', err)
       })
+
       // traduction dans la langue choisie
-      var languedemandee = message.content.charAt(0) + message.content.charAt(1)
-      var atraduire = message.content.substring(3)
-      translate.translate(atraduire, languedemandee).then((results) => {
-        let translations = results[0]
-        translations = Array.isArray(translations) ? translations : [translations]
-        translations.forEach((translation) => {
-          message.channel.send('La traduction : ' + translation)
+        translate.translate(atraduire, languedemandee).then((results) => {
+          let translations = results[0]
+          translations = Array.isArray(translations) ? translations : [translations]
+          translations.forEach((translation) => {
+            message.channel.send('La traduction : ' + translation)
+          })
         })
-      })
     .catch((err) => {
       message.channel.send('ERROR', err)
     })
+      }
+    } else {
+      message.channel.send('Veuillez rajouter un texte à traduire.\nExemple: !translate fr Hello world')
     }
   }
-  }
+}
