@@ -23,7 +23,7 @@ Nous vous présentons ici un bot Discord pouvant effectuer diverses actions dont
 
 ### Pour poster un tweet sur notre Twitter ( "@I_am_the_BOT ") : </br>
     - !tweet "Votre message" : permet d'envoyer un message sur Twitter (limitation à 140 caractères) (" !tweet WHAT IS MY PURPOSE ? ")
-    - Lors d'un tweet à @I_am_the_BOT , le bot répond sur le channel 
+    - Lors d'un tweet à @I_am_the_BOT , le bot poste le tweet sur le channel 
 
 ### Pour recherche une vidéo ou un vidéaste sur Youtube : </br>
     - !youtubeAll : lance la recherche et renvoie les 3 résultats les plus probants (" !youtubeAll who let the dogs out ")
