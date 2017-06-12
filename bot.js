@@ -59,8 +59,7 @@ client.on('message', msg => {
   YoutubeAll.parse(msg) ||
   YoutubeVideo.parse(msg) ||
   YoutubeUser.parse(msg) ||
-  YoutubePlaylist.parse(msg)  
-  
+  YoutubePlaylist.parse(msg)
 })
 
 client.login(config.token)
