@@ -21,7 +21,7 @@ module.exports = class SpotifyAlbum extends Command {
   static action (message) {
     spotifyApi.searchTracks('album:' + message.content).then(function (data) {
       if (data.body.tracks.items[0] === undefined) {
-        message.channel.send("Votre recherche n'a pas aboutie, veuillez rééssayer.")
+        message.channel.send("Votre recherche n'a pas abouti, veuillez rééssayer.")
       } else {
         for (let i = 0; i < data.body.tracks.items.length && i < 3; i++) {
           message.channel.send('Album numéro ' + [i + 1] + ' : ' + data.body.tracks.items[i].name + ", dont l'auteur est : " + data.body.tracks.items[i].artists[0].name)
