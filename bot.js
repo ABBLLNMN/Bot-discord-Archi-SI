@@ -1,11 +1,18 @@
 module.exports = {
   sendMessageToChannel: function (params) {
     channel.send(params)
-  }
+  },
+
+  setBotUsername: (username) => client.user.setUsername(username),
+
+  getBotUsername: () => client.user.username,
+
+  setBotAvatar: (path) => client.user.setAvatar(path)
 }
 
 const Discord = require('discord.js')
 const config = require('./config.js')
+const Pokemon = require('./commands/pokemon')
 const Twitter = require('./commands/twitter')
 const Weather = require('./commands/weather')
 const Forecast = require('./commands/forecast')
@@ -43,7 +50,8 @@ client.on('message', msg => {
   Album.parse(msg) ||
   SpotifyAll.parse(msg) ||
   Tracks.parse(msg) ||
-  Translate.parse(msg)
+  Translate.parse(msg) ||
+  Pokemon.parse(msg)
 })
 
 client.login(config.token)
