@@ -42,11 +42,7 @@ client.on('message', msg => {
   // If message is hello, post hello too
   if (msg.content === 'hello') {
     msg.channel.send("It's me... ")
-<<<<<<< HEAD
     msg.channel.send("I was wondering if after all these years you d'like to meet...")
-=======
-    msg.channel.send("I was wondering if after all these years you d'like to see me...")
->>>>>>> Bot-Youtube
   }
 
   // Liste des commandes
@@ -63,12 +59,8 @@ client.on('message', msg => {
   YoutubeAll.parse(msg) ||
   YoutubeVideo.parse(msg) ||
   YoutubeUser.parse(msg) ||
-<<<<<<< HEAD
   YoutubePlaylist.parse(msg)  
   
-=======
-  YoutubePlaylist.parse(msg)
->>>>>>> Bot-Youtube
 })
 
 client.login(config.token)
