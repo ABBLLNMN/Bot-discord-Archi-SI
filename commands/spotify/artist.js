@@ -8,9 +8,6 @@ var spotifyApi = new SpotifyWebApi({
 
 spotifyApi.clientCredentialsGrant()
   .then(function (data) {
-    console.log('The access token expires in ' + data.body['expires_in'])
-    console.log('The access token is ' + data.body['access_token'])
-
     spotifyApi.setAccessToken(data.body['access_token'])
   }, function (err) {
     console.log('Something went wrong when retrieving an access token', err.message)
@@ -24,10 +21,10 @@ module.exports = class SpotifyArtist extends Command {
   static action (message) {
     spotifyApi.searchArtists(message.content).then(function (data) {
       if (data.body.artists.items[0] === undefined) {
-        message.reply("Votre recherche n'a pas aboutie, veuillez rééssayer.")
+        message.channel.send("Votre recherche n'a pas aboutie, veuillez rééssayer.")
       } else {
         for (let i = 0; i < data.body.artists.items.length && i < 3; i++) {
-          message.reply('Artiste numéro ' + [i + 1] + ' : ' + data.body.artists.items[i].name)
+          message.channel.send('Artiste numéro ' + [i + 1] + ' : ' + data.body.artists.items[i].name)
         }
       }
     }, function (err) {
