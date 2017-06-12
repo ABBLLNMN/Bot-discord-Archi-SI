@@ -21,6 +21,10 @@ const Album = require('./commands/spotify/album')
 const SpotifyAll = require('./commands/spotify/all')
 const Tracks = require('./commands/spotify/tracks')
 const Ping = require('./commands/ping')
+const YoutubeAll = require('./commands/youtube/all')
+const YoutubeVideo = require('./commands/youtube/video')
+const YoutubeUser = require('./commands/youtube/user')
+const YoutubePlaylist = require('./commands/youtube/playlist')
 const Translate = require('./commands/translate')
 const client = new Discord.Client()
 let channel
@@ -52,6 +56,10 @@ client.on('message', msg => {
   Tracks.parse(msg) ||
   Translate.parse(msg) ||
   Pokemon.parse(msg)
+  YoutubeAll.parse(msg) ||
+  YoutubeVideo.parse(msg) ||
+  YoutubeUser.parse(msg) ||
+  YoutubePlaylist.parse(msg)
 })
 
 client.login(config.token)
