@@ -2,7 +2,14 @@
 Repository pour le travail en équipe en cours d'Architecture des SI. </br>
 Le groupe est composé de Bilal Abbad, Lætitia Bouvier, Nicolas Louisin et Nicolas Meneux. </br>
 
-Nous vous présentons ici un bot Discord pouvant effectuer diverses actions dont voici les commandes : </br>
+Pour lancer le bot, si le deploiment azure devait ne pas fonctionner, il faut faire dans l'invité de commande du dossier contenant le code source la manipulation suivante : </br>
+>	- npm install </br>
+>	- attendre que tout s'intalle </br>
+>	- npm start </br>
+>	- vérifier dans la console quel bot s'est allumé </br>
+>	- apprécier nos fonctionnalités </br>
+
+Nous vous présentons donc ici un bot Discord pouvant effectuer diverses actions dont voici les commandes : </br>
 
 ### Pour avoir la Météo : </br>
 	- !weather : Temps actuel sur une ville (" !weather Paris ") 
@@ -35,4 +42,4 @@ Nous vous présentons ici un bot Discord pouvant effectuer diverses actions dont
     - !pokemon "le nom en anglais de votre pokemon, ou le numéro du pokedex" : change le nom du bot, son image, et écrit les informations du pokemon correspondant (" !pokemon mewtwo ") (" !pokemon 1" donnera bulbizare)
     - !pokemon evolve : fait évoluer le pokemon si c'est possible 
 
-### Le lien pour lancer l'azure : http://archibot-blnn.azurewebsites.net/
+### Le lien pour lancer le déploiment Azure : http://archibot-blnn.azurewebsites.net/
