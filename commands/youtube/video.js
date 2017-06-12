@@ -12,8 +12,8 @@ module.exports = class Youtube extends Command {
     youTube.search(message.content, 50, function (error, result) {
       if (error) {
         console.log(error)
-      } else if (result.items[0] === undefined) {
-        message.reply("Votre recherche n'a pas abouti, veuillez rééssayer.")
+      } else if (result.items[0] === undefined || message.content === ' ' || message.content === '') {
+        message.channel.sendMessage("Votre recherche n'a pas abouti, veuillez rééssayer.")
       } else {
         var k
         var compteur
@@ -21,7 +21,7 @@ module.exports = class Youtube extends Command {
         var tab = []
 
         for (k = 0; k < 51; k++) {
-          if (result.items[k] !== undefined) {
+          if (result.items[k] !== undefined || message.content === ' ' || message.content === '') {
             if (result.items[k].id.kind === 'youtube#video') {
               tab.splice(compteur, 0, k)
               compteur += 1
@@ -33,7 +33,7 @@ module.exports = class Youtube extends Command {
         var numero
         numero = 0
         if (compteur === 0) {
-          message.reply("Votre recherche n'a pas abouti, veuillez rééssayer.")
+          message.channel.sendMessage("Votre recherche n'a pas abouti, veuillez rééssayer.")
         }
         if (compteur === 1) {
           for (k = 0; k < 1; k++) {

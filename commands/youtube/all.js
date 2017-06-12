@@ -13,8 +13,8 @@ module.exports = class Youtube extends Command {
     youTube.search(message.content, 3, function (error, result) {
       if (error) {
         console.log(error)
-      } else if (result.items[0] === undefined) {
-        message.reply("Votre recherche n'a pas abouti, veuillez rééssayer.")
+      } else if (result.items[0] === undefined || message.content === ' ' || message.content === '') {
+        message.channel.sendMessage("Votre recherche n'a pas abouti, veuillez rééssayer.")
       } else {
         // Pour afficher les données en JSON dans la console
         console.log(JSON.stringify(result))
