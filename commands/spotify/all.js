@@ -19,16 +19,20 @@ module.exports = class SpotifyAll extends Command {
   }
 
   static action (message) {
-    spotifyApi.searchTracks(message.content).then(function (data) {
-      if (data.body.tracks.items[0] === undefined) {
-        message.channel.send("Votre recherche n'a pas abouti, veuillez rééssayer.")
-      } else {
-        for (let i = 0; i < data.body.tracks.items.length && i < 3; i++) {
-          message.channel.send("L'artiste numéro " + [i + 1] + ' est ' + data.body.tracks.items[i].artists[0].name + ", dont l'album est : " + data.body.tracks.items[i].album.name + ', et la chanson : ' + data.body.tracks.items[i].name)
+    if (message.content === ' ' || message.content === '') {
+      message.channel.send("Votre recherche n'a pas abouti, veuillez rééssayer.")
+    } else {
+      spotifyApi.searchTracks(message.content).then(function (data) {
+        if (data.body.tracks.items[0] === undefined) {
+          message.channel.send("Votre recherche n'a pas abouti, veuillez rééssayer.")
+        } else {
+          for (let i = 0; i < data.body.tracks.items.length && i < 3; i++) {
+            message.channel.send("L'artiste numéro " + [i + 1] + ' est ' + data.body.tracks.items[i].artists[0].name + ", dont l'album est : " + data.body.tracks.items[i].album.name + ', et la chanson : ' + data.body.tracks.items[i].name)
+          }
         }
-      }
-    }, function (err) {
-      console.error(err)
-    })
+      }, function (err) {
+        console.error(err)
+      })
+    }
   }
 }

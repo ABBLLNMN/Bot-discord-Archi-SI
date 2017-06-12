@@ -19,16 +19,20 @@ module.exports = class SpotifyArtist extends Command {
   }
 
   static action (message) {
-    spotifyApi.searchArtists(message.content).then(function (data) {
-      if (data.body.artists.items[0] === undefined) {
-        message.channel.send("Votre recherche n'a pas abouti, veuillez rééssayer.")
-      } else {
-        for (let i = 0; i < data.body.artists.items.length && i < 3; i++) {
-          message.channel.send('Artiste numéro ' + [i + 1] + ' : ' + data.body.artists.items[i].name)
+    if (message.content === ' ' || message.content === '') {
+      message.channel.send("Votre recherche n'a pas abouti, veuillez rééssayer.")
+    } else {
+      spotifyApi.searchArtists(message.content).then(function (data) {
+        if (data.body.artists.items[0] === undefined) {
+          message.channel.send("Votre recherche n'a pas abouti, veuillez rééssayer.")
+        } else {
+          for (let i = 0; i < data.body.artists.items.length && i < 3; i++) {
+            message.channel.send('Artiste numéro ' + [i + 1] + ' : ' + data.body.artists.items[i].name)
+          }
         }
-      }
-    }, function (err) {
-      console.error(err)
-    })
+      }, function (err) {
+        console.error(err)
+      })
+    }
   }
 }
