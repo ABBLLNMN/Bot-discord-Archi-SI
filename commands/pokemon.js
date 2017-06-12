@@ -21,10 +21,13 @@ const setPokemonOnBot = (message) => {
         pokemontype += e.type.name + ' '
       })
 
-      new Promise(() => {
+      new Promise((resolve) => {
         bot.setBotUsername(pokemonName).then(() => {
           console.log('Username changed')
-          bot.setBotAvatar(pokemonSprite).then(() => console.log('Avatar changed')).catch(function (error) {
+          bot.setBotAvatar(pokemonSprite).then(() => {
+            console.log('Avatar changed')
+            resolve()
+          }).catch(function (error) {
             console.log('avatar error: ', error)
             message.channel.send('Je ne peux pas changer mon avatar.')
           })
@@ -57,9 +60,11 @@ module.exports = class Ping extends Command {
     message.content = message.content.toLowerCase()
 
     if (message.content === 'evolve') {
-      let botName = bot.getBotUsername()
+      console.log('is evolve')
+      let botName = pokemonName || bot.getBotUsername()
       P.getPokemonSpeciesByName(botName)
         .then(function (species) {
+          console.log('species')
           // To get evolution chain ID
           evoChain = species.evolution_chain.url
           let str = evoChain.substr(0, evoChain.length - 1)
@@ -67,6 +72,7 @@ module.exports = class Ping extends Command {
 
           P.getEvolutionChainById(evoChainNumber)
             .then(function (evo) {
+              console.log('chain')
               let evoData = evo.chain
               do {
                 if (evoData.species.name === botName) {
