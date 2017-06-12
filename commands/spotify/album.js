@@ -20,7 +20,7 @@ module.exports = class SpotifyAlbum extends Command {
 
   static action (message) {
     spotifyApi.searchTracks('album:' + message.content).then(function (data) {
-      if (data.body.tracks.items[0] === undefined) {
+      if (data.body.tracks.items[0] === undefined || message.content === ' ' || message.content === '') {
         message.channel.send("Votre recherche n'a pas abouti, veuillez rééssayer.")
       } else {
         for (let i = 0; i < data.body.tracks.items.length && i < 3; i++) {
