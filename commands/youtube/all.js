@@ -20,9 +20,15 @@ module.exports = class Youtube extends Command {
         // console.log(JSON.stringify(result))
         // Pour afficher l'élément Javascript dans la console
         // console.log(result.items[0].snippet.title)
-        message.channel.sendMessage('RESULTAT 01 : type : ' + result.items[0].id.kind + ', titre : ' + result.items[0].snippet.title)
-        message.channel.sendMessage('RESULTAT 02 : type : ' + result.items[1].id.kind + ', titre : ' + result.items[1].snippet.title)
-        message.channel.sendMessage('RESULTAT 03 : type : ' + result.items[2].id.kind + ', titre : ' + result.items[2].snippet.title)
+        for (var k = 0; k < 3; k++) {
+          if (result.items[k].id.kind === 'youtube#video') {
+            message.channel.send('https://www.youtube.com/watch?v=' + result.items[k].id.videoId)
+          } else if (result.items[k].id.kind === 'youtube#playlist') {
+            message.channel.send('https://www.youtube.com/playlist?list=' + result.items[k].id.playlistId)
+          } else if (result.items[k].id.kind === 'youtube#channel') {
+            message.channel.send('https://www.youtube.com/channel/' + result.items[k].id.channelId)
+          }
+        }
       }
     })
   }

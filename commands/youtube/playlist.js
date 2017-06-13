@@ -13,7 +13,7 @@ module.exports = class Youtube extends Command {
       if (error) {
         console.log(error)
       } else if (result.items[0] === undefined || message.content === ' ' || message.content === '') {
-        message.channel.sendMessage("Votre recherche n'a pas abouti, veuillez rééssayer.")
+        message.channel.send("Votre recherche n'a pas abouti, veuillez rééssayer.")
       } else {
         var k
         var compteur
@@ -31,34 +31,27 @@ module.exports = class Youtube extends Command {
         }
         console.log(compteur)
         console.log(tab)
-        var numero
-        numero = 0
         if (compteur === 0) {
-          message.channel.sendMessage("Votre recherche n'a pas abouti, veuillez rééssayer.")
+          message.channel.send("Votre recherche n'a pas abouti, veuillez rééssayer.")
         }
         if (compteur === 1) {
           for (k = 0; k < 1; k++) {
             if (result.items[tab[k]].id.kind === 'youtube#playlist') {
-              numero += 1
-              message.channel.sendMessage('Résultat n°' + numero + ' correspondant à votre recherche Playlist est de type : ' + result.items[tab[k]].id.kind + ', et a pour titre : ' + result.items[tab[k]].snippet.title)
+              message.channel.send('https://www.youtube.com/playlist?list=' + result.items[tab[k]].id.playlistId)
             }
           }
         }
         if (compteur === 2) {
           for (k = 0; k < 2; k++) {
             if (result.items[tab[k]].id.kind === 'youtube#playlist') {
-              numero += 1
-              message.channel.sendMessage('Résultat n°' + numero + ' correspondant à votre recherche Playlist est de type : ' + result.items[tab[k]].id.kind + ', et a pour titre : ' + result.items[tab[k]].snippet.title)
+              message.channel.send('https://www.youtube.com/playlist?list=' + result.items[tab[k]].id.playlistId)
             }
           }
         }
         if (compteur > 2) {
           for (k = 0; k < 3; k++) {
             if (result.items[tab[k]].id.kind === 'youtube#playlist') {
-              numero += 1
-             // console.log(JSON.stringify(result))
-              message.channel.sendMessage('Résultat n°' + numero + ' correspondant à votre recherche Playlist est de type : ' + result.items[tab[k]].id.kind + ', et a pour titre : ' + result.items[tab[k]].snippet.title)
-            //  message.channel.sendMessage('Résultat n°' + numero + ' correspondant à votre recherche Playlist est de type : ' + result.items[tab[k]].id.kind + ', et a pour titre : ' + result.items[tab[k]].snippet.title + ', lien : https://www.youtube.com/watch?v=' + result.items[tab[k]].id.resourceId.videoId + '&list=' + result.items[tab[k]].id.playlistId)
+              message.channel.send('https://www.youtube.com/playlist?list=' + result.items[tab[k]].id.playlistId)
             }
           }
         }
