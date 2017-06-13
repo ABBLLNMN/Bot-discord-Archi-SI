@@ -24,7 +24,7 @@ module.exports = class SpotifTrack extends Command {
         message.channel.send("Votre recherche n'a pas abouti, veuillez rééssayer.")
       } else {
         for (let i = 0; i < data.body.tracks.items.length && i < 3; i++) {
-          message.channel.send('Chanson numéro ' + [i + 1] + ' : ' + data.body.tracks.items[i].name + ", dont l'auteur est : " + data.body.tracks.items[i].artists[0].name)
+          message.channel.send(data.body.tracks.items[i].external_urls.spotify)
         }
       }
     }, function (err) {

@@ -27,7 +27,8 @@ module.exports = class SpotifyArtist extends Command {
           message.channel.send("Votre recherche n'a pas abouti, veuillez rééssayer.")
         } else {
           for (let i = 0; i < data.body.artists.items.length && i < 3; i++) {
-            message.channel.send('Artiste numéro ' + [i + 1] + ' : ' + data.body.artists.items[i].name)
+            console.log(data.body.artists.items[i])
+            message.channel.send(data.body.artists.items[i].external_urls.spotify)
           }
         }
       }, function (err) {
