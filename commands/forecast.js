@@ -3,8 +3,6 @@ const config = require('../config')
 const http = require('http')
 const cityList = require('./city.list.json')
 
-const convertKelvinToCelsius = tempInKelvin => tempInKelvin - 273.15
-
 const getCityDetailsByName = name => cityList.find(city => city.name.toLowerCase() === name.toLowerCase())
 
 const pad = s => (s < 10) ? '0' + s : s
@@ -16,7 +14,7 @@ const convertDate = date => {
 
 const getForecast = cityId => {
   return new Promise((resolve, reject) => {
-    http.get(`http://api.openweathermap.org/data/2.5/forecast/daily?id=${cityId}&APPID=${config.weather.API_KEY}&lang=${config.weather.lang}`, function (res) {
+    http.get(`http://api.openweathermap.org/data/2.5/forecast/daily?id=${cityId}&units=metric&APPID=${config.weather.API_KEY}&lang=${config.weather.lang}`, function (res) {
       const statusCode = res.statusCode
       const contentType = res.headers['content-type']
 
@@ -40,8 +38,8 @@ const getForecast = cityId => {
           resultat.push(
             {
               date: convertDate(parsedData.list[i].dt * 1000),
-              temperatureMin: convertKelvinToCelsius(parsedData.list[i].temp.min),
-              temperatureMax: convertKelvinToCelsius(parsedData.list[i].temp.max),
+              temperatureMin: parsedData.list[i].temp.min,
+              temperatureMax: parsedData.list[i].temp.max,
               description: parsedData.list[i].weather[0].description
             }
           )
@@ -59,20 +57,24 @@ module.exports = class Forecast extends Command {
   }
 
   static action (message) {
-    let ville = getCityDetailsByName(message.content)
+    if (message.content.length > 0) {
+      let ville = getCityDetailsByName(message.content)
 
-    if (ville) {
-      getForecast(ville.id).then(function (res) {
-        let msgToSend = `Prévision sur 5 jours à ${ville.name},${ville.country} :\n`
-        res.forEach(function (e) {
-          msgToSend += `${e.date} ${e.description} ${Math.round(e.temperatureMin)}°C/${Math.round(e.temperatureMax)}°C\n`
+      if (ville) {
+        getForecast(ville.id).then(function (res) {
+          let msgToSend = `Prévision sur 5 jours à ${ville.name},${ville.country} :\n`
+          res.forEach(function (e) {
+            msgToSend += `${e.date} ${e.description} ${Math.round(e.temperatureMin)}°C/${Math.round(e.temperatureMax)}°C\n`
+          })
+          message.reply(msgToSend)
+        }).catch((error) => {
+          console.log(error.message)
         })
-        message.reply(msgToSend)
-      }).catch((error) => {
-        console.log(error.message)
-      })
+      } else {
+        message.reply(message.content + ' n\'est pas une ville reconnue')
+      }
     } else {
-      message.reply(message.content + ' n\'est pas une ville reconnue')
+      message.reply('il faut que tu entres le nom d\'une ville reconnue.')
     }
   }
 }
