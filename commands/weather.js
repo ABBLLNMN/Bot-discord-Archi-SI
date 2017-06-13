@@ -3,13 +3,11 @@ const config = require('../config')
 const http = require('http')
 const cityList = require('./city.list.json')
 
-const convertKelvinToCelsius = tempInKelvin => tempInKelvin - 273.15
-
 const getCityDetailsByName = name => cityList.find(city => city.name.toLowerCase() === name.toLowerCase())
 
 const getWeather = cityId => {
   return new Promise((resolve, reject) => {
-    http.get(`http://api.openweathermap.org/data/2.5/weather?id=${cityId}&APPID=${config.weather.API_KEY}&lang=${config.weather.lang}`, function (res) {
+    http.get(`http://api.openweathermap.org/data/2.5/weather?id=${cityId}&units=metric&APPID=${config.weather.API_KEY}&lang=${config.weather.lang}`, function (res) {
       const statusCode = res.statusCode
       const contentType = res.headers['content-type']
 
@@ -30,7 +28,7 @@ const getWeather = cityId => {
         let parsedData
         parsedData = JSON.parse(rawData)
         let resultat = {
-          temperature: convertKelvinToCelsius(parsedData.main.temp),
+          temperature: parsedData.main.temp,
           description: parsedData.weather[0].description
         }
         resolve(resultat)
@@ -46,16 +44,20 @@ module.exports = class Weather extends Command {
   }
 
   static action (message) {
-    let ville = getCityDetailsByName(message.content)
+    if (message.content.length > 0) {
+      let ville = getCityDetailsByName(message.content)
 
-    if (ville) {
-      getWeather(ville.id).then(function (res) {
-        message.reply(`Temps actuel à ${ville.name},${ville.country} :\nMétéo : ${res.description}\nTempérature : ${Math.round(res.temperature)}°C`)
-      }).catch((error) => {
-        console.log(error.message)
-      })
+      if (ville) {
+        getWeather(ville.id).then(function (res) {
+          message.reply(`Temps actuel à ${ville.name},${ville.country} :\nMétéo : ${res.description}\nTempérature : ${Math.round(res.temperature)}°C`)
+        }).catch((error) => {
+          console.log(error.message)
+        })
+      } else {
+        message.reply(message.content + ' n\'est pas une ville reconnue.')
+      }
     } else {
-      message.reply(message.content + ' n\'est pas une ville reconnue')
+      message.reply('il faut que tu entres le nom d\'une ville reconnue.')
     }
   }
 }
