@@ -39,7 +39,8 @@ module.exports = class Youtube extends Command {
           for (k = 0; k < 1; k++) {
             if (result.items[tab[k]].id.kind === 'youtube#channel') {
               numero += 1
-              message.channel.sendMessage('Résultat n°' + numero + ' correspondant à votre recherche User est de type : ' + result.items[tab[k]].id.kind + ', et a pour titre : ' + result.items[tab[k]].snippet.title)
+              console.log(JSON.stringify(result))
+              message.channel.sendMessage('Résultat n°' + numero + ' correspondant à votre recherche User est de type : ' + result.items[tab[k]].id.kind + ', et a pour titre : ' + result.items[tab[k]].snippet.title + ', lien : https://www.youtube.com/channel/' + result.items[tab[k]].id.channelId)
             }
           }
         }
@@ -47,7 +48,7 @@ module.exports = class Youtube extends Command {
           for (k = 0; k < 2; k++) {
             if (result.items[tab[k]].id.kind === 'youtube#channel') {
               numero += 1
-              message.channel.sendMessage('Résultat n°' + numero + ' correspondant à votre recherche User est de type : ' + result.items[tab[k]].id.kind + ', et a pour titre : ' + result.items[tab[k]].snippet.title)
+              message.channel.sendMessage('Résultat n°' + numero + ' correspondant à votre recherche User est de type : ' + result.items[tab[k]].id.kind + ', et a pour titre : ' + result.items[tab[k]].snippet.title + ', lien : https://www.youtube.com/channel/' + result.items[tab[k]].id.channelId)
             }
           }
         }
@@ -55,7 +56,7 @@ module.exports = class Youtube extends Command {
           for (k = 0; k < 3; k++) {
             if (result.items[tab[k]].id.kind === 'youtube#channel') {
               numero += 1
-              message.channel.sendMessage('Résultat n°' + numero + ' correspondant à votre recherche User est de type : ' + result.items[tab[k]].id.kind + ', et a pour titre : ' + result.items[tab[k]].snippet.title)
+              message.channel.sendMessage('Résultat n°' + numero + ' correspondant à votre recherche User est de type : ' + result.items[tab[k]].id.kind + ', et a pour titre : ' + result.items[tab[k]].snippet.title + ', lien : https://www.youtube.com/channel/' + result.items[tab[k]].id.channelId)
             }
           }
         }

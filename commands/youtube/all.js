@@ -17,7 +17,7 @@ module.exports = class Youtube extends Command {
         message.channel.sendMessage("Votre recherche n'a pas abouti, veuillez rééssayer.")
       } else {
         // Pour afficher les données en JSON dans la console
-        console.log(JSON.stringify(result))
+        // console.log(JSON.stringify(result))
         // Pour afficher l'élément Javascript dans la console
         // console.log(result.items[0].snippet.title)
         message.channel.sendMessage('RESULTAT 01 : type : ' + result.items[0].id.kind + ', titre : ' + result.items[0].snippet.title)

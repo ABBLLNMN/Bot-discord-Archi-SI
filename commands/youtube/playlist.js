@@ -56,7 +56,9 @@ module.exports = class Youtube extends Command {
           for (k = 0; k < 3; k++) {
             if (result.items[tab[k]].id.kind === 'youtube#playlist') {
               numero += 1
+             // console.log(JSON.stringify(result))
               message.channel.sendMessage('Résultat n°' + numero + ' correspondant à votre recherche Playlist est de type : ' + result.items[tab[k]].id.kind + ', et a pour titre : ' + result.items[tab[k]].snippet.title)
+            //  message.channel.sendMessage('Résultat n°' + numero + ' correspondant à votre recherche Playlist est de type : ' + result.items[tab[k]].id.kind + ', et a pour titre : ' + result.items[tab[k]].snippet.title + ', lien : https://www.youtube.com/watch?v=' + result.items[tab[k]].id.resourceId.videoId + '&list=' + result.items[tab[k]].id.playlistId)
             }
           }
         }
