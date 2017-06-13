@@ -1,5 +1,5 @@
 module.exports = {
-  token: 'MzEzNjQ1OTcxNzA1OTU0MzE0.DAR4Ug.Z9cQH7Ghx3SiW7hp2_6nIhMgVOs',
+  token: 'MzEzNjQ2MDQ5MzM0MDAxNjY0.C_tJhg.1XLYYRNQgvHNns1ygWeJU8f_JiQ',
   channel: '306028002796371969',
   weather: {
     API_KEY: '51c3d12667251b88a09cbdeb2ec49ef5',
