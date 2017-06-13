@@ -18,7 +18,7 @@ Nous vous présentons donc ici un bot Discord pouvant effectuer diverses actions
 	- !forecast : Prévision sur 5 jours sur une ville (" !forecast Paris ") 
 
 ### Pour faire des recherches sur Spotify : </br>
-    - !spotifyAll : recherche les 3 résultats les plus probants  et affiche le titre l'album l'artiste (" !spotifyAll love ") 
+    - !spotify : recherche les 3 résultats les plus probants  et affiche le titre l'album l'artiste (" !spotify love ") 
     - !spotifySong : recherche une chanson, une track (" !spotifySong never gonna give you up ") 
     - !spotifyArtist : recherche un artiste (" !spotifyArtist Jul ") 
     - !spotifyAlbum : recherche un album (" !spotifyAlbum best-of ") 
@@ -35,7 +35,7 @@ Nous vous présentons donc ici un bot Discord pouvant effectuer diverses actions
     - Lors d'un tweet à @I_am_the_BOT , le bot poste le tweet sur le channel 
 
 ### Pour recherche une vidéo ou un vidéaste sur Youtube : </br>
-    - !youtubeAll : lance la recherche et renvoie les 3 résultats les plus probants (" !youtubeAll who let the dogs out ")
+    - !youtube : lance la recherche et renvoie les 3 résultats les plus probants (" !youtube who let the dogs out ")
     - !youtubeVideo : lance la recherche et renvoie les 3 premières vidéos (" !youtubeVideo best hanspinner compilation ")
     - !youtubeUser : lance la recherche et renvoie les 3 premiers utilisateurs (" !youtubeUser Squeezie ") 
     - !youtubePlaylist : lance la recherche et renvoie les 3 premières playlist (" !youtubePlaylist top 10 anime betrayal ")

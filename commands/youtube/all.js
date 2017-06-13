@@ -1,11 +1,12 @@
 const Command = require('../command')
+const config = require('../../config.js')
 const YouTube = require('youtube-node')
 var youTube = new YouTube()
-youTube.setKey('AIzaSyA2HOeK8fbmyYJ2J32EbqZB0I_3EDK6Qr4')
+youTube.setKey(config.youtube.KEY)
 
 module.exports = class Youtube extends Command {
   static match (message) {
-    return message.content.startsWith('!youtubeAll')
+    return message.content.startsWith('!youtube')
   }
 
   static action (message) {
