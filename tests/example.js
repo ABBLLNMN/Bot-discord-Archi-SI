@@ -63,7 +63,7 @@ test('evolution-chain test', t => {
 })
 
 test('youtube search test', t => {
-  return client.getPromise(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=awesomeo&maxResults=3&key=${config.youtube.KEY}`)
+  return client.getPromise(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=awesomeo&maxResults=3&key=${config.keyYoutube}`)
     .catch((error) => {
       t.fail()
       throw error
