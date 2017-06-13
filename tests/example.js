@@ -61,3 +61,27 @@ test('evolution-chain test', t => {
       t.is(res.response.statusCode, 200)
     })
 })
+
+test('youtube video test', t => {
+  return client.getPromise(`http://pokeapi.co/api/v2/evolution-chain/1/`)
+    .catch((error) => {
+      t.fail()
+      throw error
+    })
+    .then((res) => {
+      console.log(res.response.statusCode)
+      t.is(res.response.statusCode, 200)
+    })
+})
+
+test('youtube search test', t => {
+  return client.getPromise(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=awesomeo&maxResults=3&key=${config.keyYoutube}`)
+    .catch((error) => {
+      t.fail()
+      throw error
+    })
+    .then((res) => {
+      console.log(res.response.statusCode)
+      t.is(res.response.statusCode, 200)
+    })
+})

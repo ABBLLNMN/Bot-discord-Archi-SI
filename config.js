@@ -1,6 +1,6 @@
 module.exports = {
-  token: 'MzEzNjQ1OTcxNzA1OTU0MzE0.DAR4Ug.Z9cQH7Ghx3SiW7hp2_6nIhMgVOs',
-  channel: '306028002796371969',
+  token: 'MzEzNjQ2MDQ5MzM0MDAxNjY0.DCDlWw.KNeHfc0VqqvjYJvAMOcK_EjO6gs',
+  channel: '323983065170968577',
   weather: {
     API_KEY: '51c3d12667251b88a09cbdeb2ec49ef5',
     lang: 'fr'
@@ -13,5 +13,12 @@ module.exports = {
   },
   translate: {
     KEY: 'AIzaSyCO0UTJvR2C3n6IiCioCiPJWJAuOEak18c'
+  },
+  spotify: {
+    clientId: 'b8d54c468f924d0cb33ec784de752001',
+    clientSecret: '63a6d1b09d71428ab6629234a9d09839'
+  },
+  youtube: {
+    KEY: 'AIzaSyA2HOeK8fbmyYJ2J32EbqZB0I_3EDK6Qr4'
   }
 }
