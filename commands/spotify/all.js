@@ -27,7 +27,7 @@ module.exports = class SpotifyAll extends Command {
           message.channel.send("Votre recherche n'a pas abouti, veuillez rééssayer.")
         } else {
           for (let i = 0; i < data.body.tracks.items.length && i < 3; i++) {
-            message.channel.send("L'artiste numéro " + [i + 1] + ' est ' + data.body.tracks.items[i].artists[0].name + ", dont l'album est : " + data.body.tracks.items[i].album.name + ', et la chanson : ' + data.body.tracks.items[i].name)
+            message.channel.send(data.body.tracks.items[i].external_urls.spotify)
           }
         }
       }, function (err) {
